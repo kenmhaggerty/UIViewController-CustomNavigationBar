@@ -118,7 +118,7 @@
 				7D2E3A641D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m */,
 			);
 			name = "UIViewController+CustomNavigationBar";
-			path = "UIViewController+MyNavigationBar";
+			path = ../../..;
 			sourceTree = "<group>";
 		};
 		7D2E3A581D946B1C00BEFFF5 /* MyNavigationBar */ = {
@@ -128,8 +128,7 @@
 				7D2E3A5A1D947A7000BEFFF5 /* MyNavigationBar.m */,
 				7D2E3A5B1D947A7000BEFFF5 /* MyNavigationBar.xib */,
 			);
-			name = MyNavigationBar;
-			path = "UIViewController+MyNavigationBar/MyNavigationBar";
+			path = MyNavigationBar;
 			sourceTree = "<group>";
 		};
 		7D2E3A621D947FBE00BEFFF5 /* KMHGenerics */ = {
