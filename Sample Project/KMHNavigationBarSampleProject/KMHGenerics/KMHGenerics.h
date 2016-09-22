@@ -28,7 +28,6 @@ extern NSString * const UINavigationItemNotificationObjectKey;
 
 extern NSString * const UINavigationItemTitleDidChangeNotification;
 extern NSString * const UINavigationItemPromptDidChangeNotification;
-extern NSString * const UINavigationItemHidesBackButtonDidChangeNotification;
 
 @interface UINavigationItem (KMHGenerics)
 @property (nonatomic) BOOL hidesTitleView;
@@ -44,12 +43,6 @@ extern NSString * const UINavigationItemHidesBackButtonDidChangeNotification;
 @end
 
 #pragma mark - // UIViewController //
-
-//extern NSString * const UIViewControllerNotificationObjectKey;
-//
-//extern NSString * const UIViewControllerWillBePushedNotification;
-//extern NSString * const UIViewControllerWillPopNotification;
-//extern NSString * const UIViewControllerDidPopNotification;
 
 #pragma mark Public Methods
 

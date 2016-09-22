@@ -16,7 +16,7 @@
 		7D2E3A5D1D947A7000BEFFF5 /* MyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E3A5A1D947A7000BEFFF5 /* MyNavigationBar.m */; };
 		7D2E3A5E1D947A7000BEFFF5 /* MyNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E3A5B1D947A7000BEFFF5 /* MyNavigationBar.xib */; };
 		7D2E3A611D947FB700BEFFF5 /* KMHGenerics.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E3A601D947FB700BEFFF5 /* KMHGenerics.m */; };
-		7D2E3A651D94896E00BEFFF5 /* UIViewController+MyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E3A641D94896E00BEFFF5 /* UIViewController+MyNavigationBar.m */; };
+		7D2E3A651D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D2E3A641D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,9 @@
 		7D2E3A5B1D947A7000BEFFF5 /* MyNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyNavigationBar.xib; sourceTree = "<group>"; };
 		7D2E3A5F1D947FB700BEFFF5 /* KMHGenerics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMHGenerics.h; sourceTree = "<group>"; };
 		7D2E3A601D947FB700BEFFF5 /* KMHGenerics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMHGenerics.m; sourceTree = "<group>"; };
-		7D2E3A631D94896E00BEFFF5 /* UIViewController+MyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MyNavigationBar.h"; sourceTree = "<group>"; };
-		7D2E3A641D94896E00BEFFF5 /* UIViewController+MyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MyNavigationBar.m"; sourceTree = "<group>"; };
+		7D2E3A631D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CustomNavigationBar.h"; sourceTree = "<group>"; };
+		7D2E3A641D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CustomNavigationBar.m"; sourceTree = "<group>"; };
+		7D2E3A661D94998F00BEFFF5 /* CustomNavigationBarProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBarProtocols.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +95,8 @@
 			children = (
 				7D2E3A441D9469C800BEFFF5 /* ViewController.h */,
 				7D2E3A451D9469C800BEFFF5 /* ViewController.m */,
-				7D2E3A571D946B0A00BEFFF5 /* UIViewController+MyNavigationBar */,
+				7D2E3A581D946B1C00BEFFF5 /* MyNavigationBar */,
+				7D2E3A571D946B0A00BEFFF5 /* UIViewController+CustomNavigationBar */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -108,13 +110,14 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		7D2E3A571D946B0A00BEFFF5 /* UIViewController+MyNavigationBar */ = {
+		7D2E3A571D946B0A00BEFFF5 /* UIViewController+CustomNavigationBar */ = {
 			isa = PBXGroup;
 			children = (
-				7D2E3A631D94896E00BEFFF5 /* UIViewController+MyNavigationBar.h */,
-				7D2E3A641D94896E00BEFFF5 /* UIViewController+MyNavigationBar.m */,
-				7D2E3A581D946B1C00BEFFF5 /* MyNavigationBar */,
+				7D2E3A661D94998F00BEFFF5 /* CustomNavigationBarProtocols.h */,
+				7D2E3A631D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.h */,
+				7D2E3A641D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m */,
 			);
+			name = "UIViewController+CustomNavigationBar";
 			path = "UIViewController+MyNavigationBar";
 			sourceTree = "<group>";
 		};
@@ -125,7 +128,8 @@
 				7D2E3A5A1D947A7000BEFFF5 /* MyNavigationBar.m */,
 				7D2E3A5B1D947A7000BEFFF5 /* MyNavigationBar.xib */,
 			);
-			path = MyNavigationBar;
+			name = MyNavigationBar;
+			path = "UIViewController+MyNavigationBar/MyNavigationBar";
 			sourceTree = "<group>";
 		};
 		7D2E3A621D947FBE00BEFFF5 /* KMHGenerics */ = {
@@ -209,7 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D2E3A611D947FB700BEFFF5 /* KMHGenerics.m in Sources */,
-				7D2E3A651D94896E00BEFFF5 /* UIViewController+MyNavigationBar.m in Sources */,
+				7D2E3A651D94896E00BEFFF5 /* UIViewController+CustomNavigationBar.m in Sources */,
 				7D2E3A5D1D947A7000BEFFF5 /* MyNavigationBar.m in Sources */,
 				7D2E3A461D9469C800BEFFF5 /* ViewController.m in Sources */,
 				7D2E3A431D9469C800BEFFF5 /* AppDelegate.m in Sources */,

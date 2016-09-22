@@ -50,7 +50,6 @@ NSString * const UINavigationItemNotificationObjectKey = @"kUINavigationItemNoti
 
 NSString * const UINavigationItemTitleDidChangeNotification = @"kUINavigationItemTitleDidChangeNotification";
 NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationItemPromptDidChangeNotification";
-NSString * const UINavigationItemHidesBackButtonDidChangeNotification = @"kUINavigationItemHidesBackButtonDidChangeNotification";
 
 @implementation UINavigationItem (KMHGenerics)
 
@@ -133,7 +132,6 @@ NSString * const UINavigationItemHidesBackButtonDidChangeNotification = @"kUINav
     dispatch_once(&onceToken, ^{
         [self swizzleMethod:@selector(setPrompt:) withMethod:@selector(swizzled_setPrompt:)];
         [self swizzleMethod:@selector(setTitle:) withMethod:@selector(swizzled_setTitle:)];
-        [self swizzleMethod:@selector(setHidesBackButton:) withMethod:@selector(swizzled_setHidesBackButton:)];
     });
 }
 
@@ -161,18 +159,6 @@ NSString * const UINavigationItemHidesBackButtonDidChangeNotification = @"kUINav
     [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationItemTitleDidChangeNotification object:self userInfo:userInfo];
 }
 
-- (void)swizzled_setHidesBackButton:(BOOL)hidesBackButton {
-    if (hidesBackButton == self.hidesBackButton) {
-        return;
-    }
-    
-    [self swizzled_setHidesBackButton:hidesBackButton];
-    
-    NSDictionary *userInfo = @{UINavigationItemNotificationObjectKey : @(hidesBackButton)};
-    [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationItemHidesBackButtonDidChangeNotification object:self userInfo:userInfo];
-}
-
-
 @end
 
 #pragma mark - // UIView //
@@ -197,12 +183,6 @@ NSString * const UINavigationItemHidesBackButtonDidChangeNotification = @"kUINav
 
 #pragma mark Notifications
 
-//NSString * const UIViewControllerNotificationObjectKey = @"kUIViewControllerNotificationObjectKey";
-//
-//NSString * const UIViewControllerWillBePushedNotification = @"kUIViewControllerWillBePushedNotification";
-//NSString * const UIViewControllerWillPopNotification =  @"kUIViewControllerWillPopNotification";
-//NSString * const UIViewControllerDidPopNotification =  @"kUIViewControllerDidPopNotification";
-
 @implementation UIViewController (KMHGenerics)
 
 #pragma mark Inits and Loads
@@ -218,18 +198,15 @@ NSString * const UINavigationItemHidesBackButtonDidChangeNotification = @"kUINav
 #pragma mark Public Methods
 
 - (void)viewWillBePushed:(BOOL)animated {
-//    NSDictionary *userInfo = @{UIViewControllerNotificationObjectKey : @(animated)};
-//    [[NSNotificationCenter defaultCenter] postNotification:UIViewControllerWillBePushedNotification object:self userInfo:userInfo];
+    // empty
 }
 
 - (void)viewDidPop:(BOOL)animated {
-//    NSDictionary *userInfo = @{UIViewControllerNotificationObjectKey : @(animated)};
-//    [[NSNotificationCenter defaultCenter] postNotification:UIViewControllerDidPopNotification object:self userInfo:userInfo];
+    // empty
 }
 
 - (void)viewWillPop:(BOOL)animated {
-//    NSDictionary *userInfo = @{UIViewControllerNotificationObjectKey : @(animated)};
-//    [[NSNotificationCenter defaultCenter] postNotification:UIViewControllerWillPopNotification object:self userInfo:userInfo];
+    // empty
 }
 
 #pragma mark Swizzled Methods

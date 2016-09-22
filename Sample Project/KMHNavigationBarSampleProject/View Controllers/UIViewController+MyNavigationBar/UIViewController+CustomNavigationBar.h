@@ -1,5 +1,5 @@
 //
-//  UIViewController+MyNavigationBar.h
+//  UIViewController+CustomNavigationBar.h
 //  KMHNavigationBarSampleProject
 //
 //  Created by Ken M. Haggerty on 9/14/16.
@@ -11,13 +11,14 @@
 #pragma mark - // IMPORTS (Public) //
 
 #import <UIKit/UIKit.h>
-#import "MyNavigationBar.h"
 
 #pragma mark - // PROTOCOLS //
 
+#import "CustomNavigationBarProtocols.h"
+
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface UIViewController (MyNavigationBar) <MyNavigationBarDelegate>
+@interface UIViewController (CustomNavigationBar)
 @property (nonatomic) BOOL enableCustomNavigationBar;
-@property (nonatomic, strong, readonly) MyNavigationBar *customNavigationBar;
+@property (nonatomic, strong) id <CustomNavigationBar> customNavigationBar;
 @end

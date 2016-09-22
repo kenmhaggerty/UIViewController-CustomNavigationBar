@@ -1,5 +1,5 @@
 //
-//  UIViewController+MyNavigationBar.m
+//  UIViewController+CustomNavigationBar.m
 //  KMHNavigationBarSampleProject
 //
 //  Created by Ken M. Haggerty on 9/14/16.
@@ -10,14 +10,13 @@
 
 #pragma mark - // IMPORTS (Private) //
 
-#import "UIViewController+MyNavigationBar.h"
+#import "UIViewController+CustomNavigationBar.h"
 #import "KMHGenerics.h"
-#import "MyNavigationBar.h"
 #import <objc/runtime.h>
 
 #pragma mark - // DEFINITIONS (Private) //
 
-@implementation UIViewController (MyNavigationBar)
+@implementation UIViewController (CustomNavigationBar)
 
 #pragma mark - // SETTERS AND GETTERS //
 
@@ -35,26 +34,25 @@
     return self.enableCustomNavigationBar;
 }
 
-- (void)setCustomNavigationBar:(MyNavigationBar *)customNavigationBar {
+- (void)setCustomNavigationBar:(id <CustomNavigationBar>)customNavigationBar {
     objc_setAssociatedObject(self, @selector(customNavigationBar), customNavigationBar, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (MyNavigationBar *)customNavigationBar {
-    MyNavigationBar *customNavigationBar = objc_getAssociatedObject(self, @selector(customNavigationBar));
-    if (customNavigationBar) {
-        return customNavigationBar;
-    }
-    
+- (id <CustomNavigationBar>)customNavigationBar {
     if (!self.enableCustomNavigationBar) {
         return nil;
     }
     
-    if (self.navigationController && self.navigationController.navigationBar && [self.navigationController.navigationBar isKindOfClass:[MyNavigationBar class]]) {
-        customNavigationBar = (MyNavigationBar *)self.navigationController.navigationBar;
+    id <CustomNavigationBar> customNavigationBar = objc_getAssociatedObject(self, @selector(customNavigationBar));
+    if (customNavigationBar) {
+        return customNavigationBar;
     }
-    else {
-        customNavigationBar = [[MyNavigationBar alloc] init];
+    
+    if (!self.navigationController || !self.navigationController.navigationBar || ![self.navigationController.navigationBar conformsToProtocol:@protocol(CustomNavigationBar)]) {
+        return nil;
     }
+    
+    customNavigationBar = (id <CustomNavigationBar>)self.navigationController.navigationBar;
     self.customNavigationBar = customNavigationBar;
     return self.customNavigationBar;
 }
@@ -97,7 +95,7 @@
     self.navigationItem.hidesTitleView = YES; // bug fix - would prefer without this line of code
     self.navigationItem.hidesBackButton = YES; // bug fix - would prefer without this line of code
     
-    self.customNavigationBar.myNavigationBarDelegate = self;
+    self.customNavigationBar.customNavigationBarDelegate = self;
     
     if (!self.navigationController) {
         return;

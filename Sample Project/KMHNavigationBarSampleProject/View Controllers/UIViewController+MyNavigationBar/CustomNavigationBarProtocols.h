@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CustomNavigationBarProtocols.h
 //  KMHNavigationBarSampleProject
 //
 //  Created by Ken M. Haggerty on 9/22/16.
@@ -10,11 +10,13 @@
 
 #pragma mark - // IMPORTS (Public) //
 
-#import <UIKit/UIKit.h>
-
-#pragma mark - // PROTOCOLS //
+#import <Foundation/Foundation.h>
 
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface ViewController : UIViewController
+#pragma mark - // PROTOCOL (CustomNavigationBar) //
+
+@protocol CustomNavigationBar <NSObject>
+@property (nonatomic, weak) id customNavigationBarDelegate;
+- (void)reloadAnimated:(BOOL)animated;
 @end

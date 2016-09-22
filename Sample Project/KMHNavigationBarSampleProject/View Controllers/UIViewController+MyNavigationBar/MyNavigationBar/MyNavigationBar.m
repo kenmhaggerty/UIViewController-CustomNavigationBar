@@ -180,27 +180,27 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
 #pragma mark - // PRIVATE METHODS (Actions) //
 
 - (IBAction)back:(id)sender {
-    if (!self.myNavigationBarDelegate) {
+    if (!self.customNavigationBarDelegate) {
         return;
     }
     
-    [self.myNavigationBarDelegate backButtonWasTapped:sender];
+    [self.customNavigationBarDelegate backButtonWasTapped:sender];
 }
 
 - (IBAction)minus:(id)sender {
-    if (!self.myNavigationBarDelegate || ![self.myNavigationBarDelegate respondsToSelector:@selector(minusButtonWasTapped:)]) {
+    if (!self.customNavigationBarDelegate || ![self.customNavigationBarDelegate respondsToSelector:@selector(minusButtonWasTapped:)]) {
         return;
     }
     
-    [self.myNavigationBarDelegate minusButtonWasTapped:sender];
+    [self.customNavigationBarDelegate minusButtonWasTapped:sender];
 }
 
 - (IBAction)plus:(id)sender {
-    if (!self.myNavigationBarDelegate || ![self.myNavigationBarDelegate respondsToSelector:@selector(plusButtonWasTapped:)]) {
+    if (!self.customNavigationBarDelegate || ![self.customNavigationBarDelegate respondsToSelector:@selector(plusButtonWasTapped:)]) {
         return;
     }
     
-    [self.myNavigationBarDelegate plusButtonWasTapped:sender];
+    [self.customNavigationBarDelegate plusButtonWasTapped:sender];
 }
 
 #pragma mark - // PRIVATE METHODS (Observers) //

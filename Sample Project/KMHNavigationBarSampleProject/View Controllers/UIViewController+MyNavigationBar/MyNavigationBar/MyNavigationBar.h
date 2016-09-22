@@ -12,6 +12,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CustomNavigationBarProtocols.h"
+
 #pragma mark - // PROTOCOL (MyNavigationBarDelegate) //
 
 @class MyNavigationBar;
@@ -25,8 +27,8 @@
 
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface MyNavigationBar : UINavigationBar
-@property (nonatomic, weak) id <MyNavigationBarDelegate> myNavigationBarDelegate;
+@interface MyNavigationBar : UINavigationBar <CustomNavigationBar>
+@property (nonatomic, weak) id <MyNavigationBarDelegate> customNavigationBarDelegate;
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic) CGFloat minimumHeight;
