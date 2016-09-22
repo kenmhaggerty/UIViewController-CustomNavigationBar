@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JIR-Ek-pf9">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--MyNavigationBar-->
+        <scene sceneID="Abk-k1-s3L">
+            <objects>
+                <viewController id="aMQ-8a-rMB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="phU-Qs-A6u"/>
+                        <viewControllerLayoutGuide type="bottom" id="UiH-Ls-al4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x5x-45-rvi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYZ-Ty-Wlt">
+                                <rect key="frame" x="242" y="323" width="117" height="30"/>
+                                <state key="normal" title="MyNavigationBar"/>
+                                <connections>
+                                    <segue destination="aMQ-8a-rMB" kind="show" id="q3L-ON-6mz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zlh-VH-NR4">
+                                <rect key="frame" x="245" y="285" width="111" height="30"/>
+                                <state key="normal" title="UINavigationBar"/>
+                                <connections>
+                                    <segue destination="O4W-MZ-kPt" kind="show" id="61h-GJ-NwB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zlh-VH-NR4" firstAttribute="centerY" secondItem="x5x-45-rvi" secondAttribute="centerY" id="CdW-Wt-rKJ"/>
+                            <constraint firstItem="uYZ-Ty-Wlt" firstAttribute="top" secondItem="Zlh-VH-NR4" secondAttribute="bottom" constant="8" id="FpS-U8-D9U"/>
+                            <constraint firstItem="Zlh-VH-NR4" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="lv0-ci-aRr"/>
+                            <constraint firstItem="uYZ-Ty-Wlt" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="tmv-xz-cVy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="MyNavigationBar" id="N7L-Xd-YJY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1h-eC-UYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1884" y="649"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v1E-k3-RkS">
+            <objects>
+                <navigationController id="JIR-Ek-pf9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZ7-XT-0AH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="O4W-MZ-kPt" kind="relationship" relationship="rootViewController" id="qoT-Hp-K00"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XlL-SF-kSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="649"/>
+        </scene>
+        <!--UINavigationBar-->
+        <scene sceneID="4c2-oR-cAc">
+            <objects>
+                <viewController id="O4W-MZ-kPt" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nBK-BY-PSC"/>
+                        <viewControllerLayoutGuide type="bottom" id="zLo-U8-9UE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uJf-lL-4ce">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U10-ha-EZ3">
+                                <rect key="frame" x="245" y="285" width="111" height="30"/>
+                                <state key="normal" title="UINavigationBar"/>
+                                <connections>
+                                    <segue destination="O4W-MZ-kPt" kind="show" id="jKy-hz-HLB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHo-U2-ibi">
+                                <rect key="frame" x="242" y="323" width="117" height="30"/>
+                                <state key="normal" title="MyNavigationBar"/>
+                                <connections>
+                                    <segue destination="aMQ-8a-rMB" kind="show" id="FkF-Sn-XCX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U10-ha-EZ3" firstAttribute="centerY" secondItem="uJf-lL-4ce" secondAttribute="centerY" id="Koo-Fy-neq"/>
+                            <constraint firstItem="MHo-U2-ibi" firstAttribute="top" secondItem="U10-ha-EZ3" secondAttribute="bottom" constant="8" id="a44-gx-mX3"/>
+                            <constraint firstItem="U10-ha-EZ3" firstAttribute="centerX" secondItem="uJf-lL-4ce" secondAttribute="centerX" id="gJy-vL-nIi"/>
+                            <constraint firstItem="MHo-U2-ibi" firstAttribute="centerX" secondItem="uJf-lL-4ce" secondAttribute="centerX" id="qpT-r5-xW5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="UINavigationBar" id="hbm-37-tOf"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k7l-z9-fyr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064" y="649"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qoT-Hp-K00"/>
+        <segue reference="FkF-Sn-XCX"/>
+    </inferredMetricsTieBreakers>
+</document>
