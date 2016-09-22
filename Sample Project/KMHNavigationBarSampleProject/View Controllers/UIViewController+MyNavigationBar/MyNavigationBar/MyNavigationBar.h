@@ -33,5 +33,5 @@
 - (void)setPrompt:(NSString *)prompt animated:(BOOL)animated;
 - (void)setTitle:(NSString *)title animated:(BOOL)animated;
 - (void)setMinimumHeight:(CGFloat)minimumHeight animated:(BOOL)animated;
-//- (void)reloadAnimated:(BOOL)animated;
+- (void)reloadAnimated:(BOOL)animated;
 @end

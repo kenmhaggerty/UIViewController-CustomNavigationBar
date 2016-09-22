@@ -8,7 +8,7 @@
         <!--MyNavigationBar-->
         <scene sceneID="Abk-k1-s3L">
             <objects>
-                <viewController id="aMQ-8a-rMB" sceneMemberID="viewController">
+                <viewController id="aMQ-8a-rMB" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="phU-Qs-A6u"/>
                         <viewControllerLayoutGuide type="bottom" id="UiH-Ls-al4"/>
@@ -106,7 +106,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qoT-Hp-K00"/>
         <segue reference="FkF-Sn-XCX"/>
+        <segue reference="61h-GJ-NwB"/>
     </inferredMetricsTieBreakers>
 </document>
