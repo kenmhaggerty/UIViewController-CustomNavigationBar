@@ -18,7 +18,9 @@
 
 CGFloat const MyNavigationBarIncrementValue = 20.0f;
 
-@interface ViewController ()
+@interface ViewController () <MyNavigationBarDelegate, UITextFieldDelegate>
+@property (nonatomic, strong) IBOutlet UITextField *promptTextField;
+@property (nonatomic, strong) IBOutlet UITextField *titleTextField;
 @property (nonatomic, strong) MyNavigationBar *myNavigationBar;
 @end
 
@@ -43,7 +45,12 @@ CGFloat const MyNavigationBarIncrementValue = 20.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.myNavigationBar) {
+        return;
+    }
+    
     self.myNavigationBar = [[MyNavigationBar alloc] init];
+    self.myNavigationBar.myNavigationBarDelegate = self;
     self.enableCustomNavigationBar = YES;
 }
 
@@ -78,7 +85,27 @@ CGFloat const MyNavigationBarIncrementValue = 20.0f;
     [self.myNavigationBar setMinimumHeight:fmaxf(self.myNavigationBar.minimumHeight+MyNavigationBarIncrementValue, self.myNavigationBar.frame.size.height+MyNavigationBarIncrementValue) animated:YES];
 }
 
+#pragma mark - // DELEGATED METHODS //
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isEqual:self.titleTextField]) {
+        self.navigationItem.title = textField.text;
+    }
+    else if ([textField isEqual:self.promptTextField]) {
+        self.navigationItem.prompt = textField.text;
+    }
+}
+
 #pragma mark - // OVERWRITTEN METHODS //
+
+- (BOOL)enableCustomNavigationBar {
+    return YES;
+}
 
 #pragma mark - // PRIVATE METHODS //
 

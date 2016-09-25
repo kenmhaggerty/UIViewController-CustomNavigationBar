@@ -12,13 +12,28 @@
 
 #import <UIKit/UIKit.h>
 
-#pragma mark - // PROTOCOLS //
+#pragma mark - // UINavigationItem //
+
+#pragma mark Notifications
+
+extern NSString * const UINavigationItemNotificationObjectKey;
+
+extern NSString * const UINavigationItemTitleDidChangeNotification;
+extern NSString * const UINavigationItemPromptDidChangeNotification;
+
+#pragma mark - // UIViewController //
+
+#pragma mark Protocols
 
 #import "CustomNavigationBarProtocols.h"
 
-#pragma mark - // DEFINITIONS (Public) //
+#pragma mark Methods
 
 @interface UIViewController (CustomNavigationBar)
 @property (nonatomic) BOOL enableCustomNavigationBar;
-@property (nonatomic, strong) id <CustomNavigationBar> customNavigationBar;
+@property (nonatomic, strong) UINavigationBar <CustomNavigationBar> *customNavigationBar;
+- (void)viewWillPush:(BOOL)animated;
+- (void)viewWillBePushed:(BOOL)animated;
+- (void)viewWillPop:(BOOL)animated;
+- (void)viewDidPop:(BOOL)animated;
 @end

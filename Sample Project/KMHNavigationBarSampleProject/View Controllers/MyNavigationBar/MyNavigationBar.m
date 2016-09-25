@@ -37,16 +37,6 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
 - (IBAction)minus:(id)sender;
 - (IBAction)plus:(id)sender;
 
-// OBSERVERS //
-
-- (void)addObserversToNavigationItem:(UINavigationItem *)navigationItem;
-- (void)removeObserversFromNavigationItem:(UINavigationItem *)navigationItem;
-
-// RESPONDERS //
-
-- (void)navigationItemPromptDidChange:(NSNotification *)notification;
-- (void)navigationItemTitleDidChange:(NSNotification *)notification;
-
 // ANIMATIONS //
 
 - (void)setBackButtonVisible:(BOOL)visible animated:(BOOL)animated withCompletion:(void(^)(BOOL finished))completionBlock;
@@ -83,6 +73,16 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
 
 #pragma mark - // INITS AND LOADS //
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        UIView *contentView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
+        contentView.frame = self.bounds;
+        [self addSubview:contentView];
+    }
+    return self;
+}
+
 #pragma mark - // PUBLIC METHODS //
 
 - (void)setPrompt:(NSString *)prompt animated:(BOOL)animated {
@@ -108,19 +108,12 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
     [self setBackButtonVisible:(self.items.count > 1) animated:animated withCompletion:nil];
 }
 
-#pragma mark - // DELEGATED METHODS //
+#pragma mark - // DELEGATED METHODS (CustomNavigationBar) //
 
 #pragma mark - // OVERWRITTEN METHODS //
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UIView *contentView = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] firstObject];
-        contentView.frame = self.bounds;
-        [self addSubview:contentView];
-    });
     
     self.constraintStatusBarHeight.constant = [UIApplication sharedApplication].statusBarFrame.size.height;
 }
@@ -136,29 +129,18 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
     
     [self setBackButtonVisible:(self.items.count > 1) animated:animated withCompletion:nil];
     
+//    [self reloadAnimated:animated];
+    
     [self sizeToFitAnimated:animated];
 }
 
 - (void)setItems:(NSArray <UINavigationItem *> *)items {
-    if ((!items && !self.items) || ([items isEqualToArray:self.items])) {
-        return;
-    }
-    
-    if (self.topItem) {
-        [self removeObserversFromNavigationItem:self.topItem];
-    }
-    
     [super setItems:items];
     
-    if (self.topItem) {
-        [self addObserversToNavigationItem:self.topItem];
-    }
-    
-    [self reloadTitleAnimated:NO];
-}
-
-- (void)pushNavigationItem:(UINavigationItem *)item animated:(BOOL)animated {
-    [super pushNavigationItem:item animated:animated];
+    self.topItem.hidesBackButton = YES;
+    self.topItem.hidesLeftBarButtonItems = YES;
+    self.topItem.hidesTitleView = YES;
+    self.topItem.hidesRightBarButtonItems = YES;
 }
 
 #pragma mark - // PRIVATE METHODS (General) //
@@ -180,54 +162,32 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
 #pragma mark - // PRIVATE METHODS (Actions) //
 
 - (IBAction)back:(id)sender {
-    if (!self.customNavigationBarDelegate) {
+    if (!self.myNavigationBarDelegate) {
         return;
     }
     
-    [self.customNavigationBarDelegate backButtonWasTapped:sender];
+    [self.myNavigationBarDelegate backButtonWasTapped:sender];
 }
 
 - (IBAction)minus:(id)sender {
-    if (!self.customNavigationBarDelegate || ![self.customNavigationBarDelegate respondsToSelector:@selector(minusButtonWasTapped:)]) {
+    if (!self.myNavigationBarDelegate || ![self.myNavigationBarDelegate respondsToSelector:@selector(minusButtonWasTapped:)]) {
         return;
     }
     
-    [self.customNavigationBarDelegate minusButtonWasTapped:sender];
+    [self.myNavigationBarDelegate minusButtonWasTapped:sender];
 }
 
 - (IBAction)plus:(id)sender {
-    if (!self.customNavigationBarDelegate || ![self.customNavigationBarDelegate respondsToSelector:@selector(plusButtonWasTapped:)]) {
+    if (!self.myNavigationBarDelegate || ![self.myNavigationBarDelegate respondsToSelector:@selector(plusButtonWasTapped:)]) {
         return;
     }
     
-    [self.customNavigationBarDelegate plusButtonWasTapped:sender];
+    [self.myNavigationBarDelegate plusButtonWasTapped:sender];
 }
 
 #pragma mark - // PRIVATE METHODS (Observers) //
 
-- (void)addObserversToNavigationItem:(UINavigationItem *)navigationItem {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationItemPromptDidChange:) name:UINavigationItemPromptDidChangeNotification object:navigationItem];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationItemTitleDidChange:) name:UINavigationItemTitleDidChangeNotification object:navigationItem];
-}
-
-- (void)removeObserversFromNavigationItem:(UINavigationItem *)navigationItem {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationItemPromptDidChangeNotification object:navigationItem];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationItemTitleDidChangeNotification object:navigationItem];
-}
-
 #pragma mark - // PRIVATE METHODS (Responders) //
-
-- (void)navigationItemPromptDidChange:(NSNotification *)notification {
-    NSString *prompt = notification.userInfo[UINavigationItemNotificationObjectKey];
-    
-    [self setPrompt:prompt animated:YES];
-}
-
-- (void)navigationItemTitleDidChange:(NSNotification *)notification {
-    NSString *title = notification.userInfo[UINavigationItemNotificationObjectKey];
-    
-    [self setTitle:title animated:YES];
-}
 
 #pragma mark - // PRIVATE METHODS (Animations) //
 

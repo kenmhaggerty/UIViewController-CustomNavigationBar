@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--MyNavigationBar-->
@@ -31,16 +32,48 @@
                                     <segue destination="O4W-MZ-kPt" kind="show" id="61h-GJ-NwB"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="prompt" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lht-dz-YTG">
+                                <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aMQ-8a-rMB" id="dwJ-dz-MsC"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79o-ck-Pie">
+                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aMQ-8a-rMB" id="FmJ-49-xXv"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="79o-ck-Pie" secondAttribute="trailing" id="5GJ-Rb-cdW"/>
+                            <constraint firstItem="79o-ck-Pie" firstAttribute="top" secondItem="lht-dz-YTG" secondAttribute="bottom" constant="8" id="75Z-MY-H3d"/>
                             <constraint firstItem="Zlh-VH-NR4" firstAttribute="centerY" secondItem="x5x-45-rvi" secondAttribute="centerY" id="CdW-Wt-rKJ"/>
                             <constraint firstItem="uYZ-Ty-Wlt" firstAttribute="top" secondItem="Zlh-VH-NR4" secondAttribute="bottom" constant="8" id="FpS-U8-D9U"/>
+                            <constraint firstItem="lht-dz-YTG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x5x-45-rvi" secondAttribute="leadingMargin" id="FxV-fH-ICn"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lht-dz-YTG" secondAttribute="trailing" id="GFi-5A-DeT"/>
+                            <constraint firstItem="lht-dz-YTG" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="Iex-TJ-EmU"/>
+                            <constraint firstItem="lht-dz-YTG" firstAttribute="top" secondItem="phU-Qs-A6u" secondAttribute="bottom" constant="8" id="IfF-kk-KkH"/>
+                            <constraint firstItem="79o-ck-Pie" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="KSI-cz-P2d"/>
+                            <constraint firstItem="lht-dz-YTG" firstAttribute="width" secondItem="x5x-45-rvi" secondAttribute="width" priority="750" id="kvh-a9-ZBJ"/>
+                            <constraint firstItem="79o-ck-Pie" firstAttribute="width" secondItem="x5x-45-rvi" secondAttribute="width" priority="750" id="lL8-1w-9GD"/>
                             <constraint firstItem="Zlh-VH-NR4" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="lv0-ci-aRr"/>
+                            <constraint firstAttribute="leadingMargin" relation="greaterThanOrEqual" secondItem="79o-ck-Pie" secondAttribute="leading" id="shj-Io-4dp"/>
                             <constraint firstItem="uYZ-Ty-Wlt" firstAttribute="centerX" secondItem="x5x-45-rvi" secondAttribute="centerX" id="tmv-xz-cVy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MyNavigationBar" id="N7L-Xd-YJY"/>
+                    <navigationItem key="navigationItem" title="MyNavigationBar" id="N7L-Xd-YJY">
+                        <barButtonItem key="rightBarButtonItem" title="Two" id="mHy-NT-lMO"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="promptTextField" destination="lht-dz-YTG" id="EZd-iO-tu0"/>
+                        <outlet property="titleTextField" destination="79o-ck-Pie" id="gpl-Mg-kDE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1h-eC-UYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +130,9 @@
                             <constraint firstItem="MHo-U2-ibi" firstAttribute="centerX" secondItem="uJf-lL-4ce" secondAttribute="centerX" id="qpT-r5-xW5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="UINavigationBar" id="hbm-37-tOf"/>
+                    <navigationItem key="navigationItem" title="UINavigationBar" id="hbm-37-tOf">
+                        <barButtonItem key="rightBarButtonItem" title="One" id="FuW-ES-Ini"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7l-z9-fyr" userLabel="First Responder" sceneMemberID="firstResponder"/>

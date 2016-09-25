@@ -28,7 +28,7 @@
 #pragma mark - // DEFINITIONS (Public) //
 
 @interface MyNavigationBar : UINavigationBar <CustomNavigationBar>
-@property (nonatomic, weak) id <MyNavigationBarDelegate> customNavigationBarDelegate;
+@property (nonatomic, weak) id <MyNavigationBarDelegate> myNavigationBarDelegate;
 @property (nonatomic, strong) NSString *prompt;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic) CGFloat minimumHeight;
