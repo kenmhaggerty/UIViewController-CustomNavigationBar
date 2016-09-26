@@ -25,7 +25,7 @@
 
 #pragma mark - // UINavigationItem //
 
-@interface UINavigationItem (CustomNavigationBar)
+@interface UINavigationItem (Extras)
 @property (nonatomic) BOOL hidesLeftBarButtonItems;
 @property (nonatomic) BOOL hidesTitleView;
 @property (nonatomic) BOOL hidesRightBarButtonItems;

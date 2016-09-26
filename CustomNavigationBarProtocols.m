@@ -15,7 +15,7 @@
 
 #pragma mark - // UINavigationItem //
 
-@implementation UINavigationItem (CustomNavigationBar)
+@implementation UINavigationItem (Extras)
 
 #pragma mark Setters and Getters
 
