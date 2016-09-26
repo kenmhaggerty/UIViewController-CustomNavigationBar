@@ -292,7 +292,6 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
     
     [self.navigationController setValue:nil forKeyPath:NSStringFromSelector(@selector(navigationBar))];
     [self.navigationController setValue:self.customNavigationBar forKeyPath:NSStringFromSelector(@selector(navigationBar))];
-    [self.customNavigationBar reloadAnimated:animated];
 }
 
 - (void)swizzled_viewWillPush:(BOOL)animated {
@@ -315,6 +314,8 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
     [self swizzled_viewDidAppear:animated];
     
     self.navigationItem.backBarButtonItemIsHidden = NO;
+    
+    [self.customNavigationBar reloadAnimated:animated];
 }
 
 - (void)swizzled_viewWillDisappear:(BOOL)animated {
