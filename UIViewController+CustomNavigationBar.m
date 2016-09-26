@@ -79,28 +79,16 @@
 #pragma mark Private Methods (Observers)
 
 - (void)addObserversToNavigationItem:(UINavigationItem *)navigationItem {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationItemPromptDidChange:) name:UINavigationItemPromptDidChangeNotification object:navigationItem];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationItemTitleDidChange:) name:UINavigationItemTitleDidChangeNotification object:navigationItem];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(navigationItemPromptDidChange:) name:UINavigationItemPromptDidChangeNotification object:navigationItem];
 }
 
 - (void)removeObserversFromNavigationItem:(UINavigationItem *)navigationItem {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationItemPromptDidChangeNotification object:navigationItem];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationItemTitleDidChangeNotification object:navigationItem];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UINavigationItemPromptDidChangeNotification object:navigationItem];
 }
 
 #pragma mark Private Methods (Responders)
-
-- (void)navigationItemPromptDidChange:(NSNotification *)notification {
-    NSString *prompt = notification.userInfo[UINavigationItemNotificationObjectKey];
-    
-    UINavigationBar <CustomNavigationBar> *customNavigationBar = (UINavigationBar <CustomNavigationBar> *)self;
-    if ([customNavigationBar respondsToSelector:@selector(setPrompt:animated:)]) {
-        [customNavigationBar setPrompt:prompt animated:YES];
-    }
-    else if ([customNavigationBar respondsToSelector:@selector(setPrompt:)]) {
-        customNavigationBar.prompt = prompt;
-    }
-}
 
 - (void)navigationItemTitleDidChange:(NSNotification *)notification {
     NSString *title = notification.userInfo[UINavigationItemNotificationObjectKey];
@@ -111,6 +99,18 @@
     }
     else if ([customNavigationBar respondsToSelector:@selector(setTitle:)]) {
         customNavigationBar.title = title;
+    }
+}
+
+- (void)navigationItemPromptDidChange:(NSNotification *)notification {
+    NSString *prompt = notification.userInfo[UINavigationItemNotificationObjectKey];
+    
+    UINavigationBar <CustomNavigationBar> *customNavigationBar = (UINavigationBar <CustomNavigationBar> *)self;
+    if ([customNavigationBar respondsToSelector:@selector(setPrompt:animated:)]) {
+        [customNavigationBar setPrompt:prompt animated:YES];
+    }
+    else if ([customNavigationBar respondsToSelector:@selector(setPrompt:)]) {
+        customNavigationBar.prompt = prompt;
     }
 }
 
@@ -175,23 +175,12 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self swizzleMethod:@selector(setPrompt:) withMethod:@selector(swizzled_setPrompt:)];
         [self swizzleMethod:@selector(setTitle:) withMethod:@selector(swizzled_setTitle:)];
+        [self swizzleMethod:@selector(setPrompt:) withMethod:@selector(swizzled_setPrompt:)];
     });
 }
 
 #pragma mark Swizzled Methods
-
-- (void)swizzled_setPrompt:(NSString *)prompt {
-    if ((!prompt && !self.prompt) || ([prompt isEqualToString:self.prompt])) {
-        return;
-    }
-    
-    [self swizzled_setPrompt:prompt];
-    
-    NSDictionary *userInfo = prompt ? @{UINavigationItemNotificationObjectKey : prompt} : @{};
-    [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationItemPromptDidChangeNotification object:self userInfo:userInfo];
-}
 
 - (void)swizzled_setTitle:(NSString *)title {
     if ((!title && !self.title) || ([title isEqualToString:self.title])) {
@@ -202,6 +191,17 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
     
     NSDictionary *userInfo = title ? @{UINavigationItemNotificationObjectKey : title} : @{};
     [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationItemTitleDidChangeNotification object:self userInfo:userInfo];
+}
+
+- (void)swizzled_setPrompt:(NSString *)prompt {
+    if ((!prompt && !self.prompt) || ([prompt isEqualToString:self.prompt])) {
+        return;
+    }
+    
+    [self swizzled_setPrompt:prompt];
+    
+    NSDictionary *userInfo = prompt ? @{UINavigationItemNotificationObjectKey : prompt} : @{};
+    [[NSNotificationCenter defaultCenter] postNotificationName:UINavigationItemPromptDidChangeNotification object:self userInfo:userInfo];
 }
 
 @end

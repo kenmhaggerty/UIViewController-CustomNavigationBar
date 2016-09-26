@@ -185,10 +185,6 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
     [self.myNavigationBarDelegate plusButtonWasTapped:sender];
 }
 
-#pragma mark - // PRIVATE METHODS (Observers) //
-
-#pragma mark - // PRIVATE METHODS (Responders) //
-
 #pragma mark - // PRIVATE METHODS (Animations) //
 
 - (void)setBackButtonVisible:(BOOL)visible animated:(BOOL)animated withCompletion:(void (^)(BOOL))completionBlock {

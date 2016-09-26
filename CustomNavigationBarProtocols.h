@@ -17,10 +17,10 @@
 @protocol CustomNavigationBar <NSObject>
 - (void)reloadAnimated:(BOOL)animated;
 @optional
-- (void)setPrompt:(NSString *)prompt;
 - (void)setTitle:(NSString *)title;
-- (void)setPrompt:(NSString *)prompt animated:(BOOL)animated;
+- (void)setPrompt:(NSString *)prompt;
 - (void)setTitle:(NSString *)title animated:(BOOL)animated;
+- (void)setPrompt:(NSString *)prompt animated:(BOOL)animated;
 @end
 
 #pragma mark - // UINavigationItem //
