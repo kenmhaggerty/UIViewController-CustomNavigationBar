@@ -270,7 +270,6 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
         [self swizzleMethod:@selector(viewWillPush:) withMethod:@selector(swizzled_viewWillPush:)];
         [self swizzleMethod:@selector(viewDidAppear:) withMethod:@selector(swizzled_viewDidAppear:)];
         [self swizzleMethod:@selector(viewWillDisappear:) withMethod:@selector(swizzled_viewWillDisappear:)];
-        [self swizzleMethod:@selector(viewDidDisappear:) withMethod:@selector(swizzled_viewDidDisappear:)];
         [self swizzleMethod:@selector(viewWillBePushed:) withMethod:@selector(swizzled_viewWillBePushed:)];
         [self swizzleMethod:@selector(viewWillPop:) withMethod:@selector(swizzled_viewWillPop:)];
     });
@@ -333,14 +332,6 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
     }
 }
 
-- (void)swizzled_viewDidDisappear:(BOOL)animated {
-    [self swizzled_viewDidDisappear:animated];
-    
-    if (self.isMovingFromParentViewController) {
-        [self viewDidPop:animated];
-    }
-}
-
 - (void)swizzled_viewWillBePushed:(BOOL)animated {
     [self swizzled_viewWillBePushed:animated];
     
@@ -379,10 +370,6 @@ NSString * const UINavigationItemPromptDidChangeNotification = @"kUINavigationIt
 }
 
 - (void)viewWillBePushed:(BOOL)animated {
-    // empty
-}
-
-- (void)viewDidPop:(BOOL)animated {
     // empty
 }
 

@@ -35,5 +35,4 @@ extern NSString * const UINavigationItemPromptDidChangeNotification;
 - (void)viewWillPush:(BOOL)animated;
 - (void)viewWillBePushed:(BOOL)animated;
 - (void)viewWillPop:(BOOL)animated;
-- (void)viewDidPop:(BOOL)animated;
 @end
