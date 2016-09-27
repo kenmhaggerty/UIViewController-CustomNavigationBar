@@ -12,19 +12,14 @@
 
 #import "UIViewController+CustomNavigationBar.h"
 #import <objc/runtime.h>
-#import "KMHGenerics.h"
 
 #pragma mark - // NSObject //
 
-#pragma mark Definitions
-
-@interface NSObject (CustomNavigationBar)
+@interface NSObject (Swizzled)
 - (void)swizzleMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector;
 @end
 
-@implementation NSObject (CustomNavigationBar)
-
-#pragma mark Public Methods
+@implementation NSObject (Swizzled)
 
 // copied w/ modifications via Mattt Thompson's tutorial at http://nshipster.com/method-swizzling/
 - (void)swizzleMethod:(SEL)originalSelector withMethod:(SEL)swizzledSelector {
