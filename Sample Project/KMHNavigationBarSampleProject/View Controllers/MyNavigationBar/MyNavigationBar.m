@@ -11,7 +11,6 @@
 #pragma mark - // IMPORTS (Private) //
 
 #import "MyNavigationBar.h"
-#import "KMHGenerics.h"
 
 #pragma mark - // DEFINITIONS (Private) //
 
@@ -40,6 +39,7 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
 // ANIMATIONS //
 
 - (void)setBackButtonVisible:(BOOL)visible animated:(BOOL)animated withCompletion:(void(^)(BOOL finished))completionBlock;
+- (void)updateConstraintsWithDuration:(NSTimeInterval)duration block:(void (^)(void))block;
 
 @end
 
@@ -193,6 +193,16 @@ NSTimeInterval const MyNavigationBarAnimationDuration = 0.33f;
     [UIView animateWithDuration:(animated ? MyNavigationBarAnimationDuration : 0.0f) animations:^{
         [self layoutIfNeeded];
         self.backButton.alpha = visible ? 1.0f : 0.0f;
+    }];
+}
+
+- (void)updateConstraintsWithDuration:(NSTimeInterval)duration block:(void (^)(void))block {
+    if (block) {
+        block();
+    }
+    [self setNeedsUpdateConstraints];
+    [UIView animateWithDuration:duration animations:^{
+        [self layoutIfNeeded];
     }];
 }
 
